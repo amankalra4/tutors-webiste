@@ -2,8 +2,8 @@ import { getReferenceIDInterface } from "@modules/interface/api";
 import { cmsBaseURL, getCMSDataURL } from "@modules/constants";
 import { CMSDataRootObject } from "@modules/interface/cms-api-data";
 import axios from "axios";
-import Header from "../src/components/header";
-import React, { useEffect } from "react";
+import Header from "@src/components/header";
+import React from "react";
 import TopContainer from "@components/top-container";
 import { InferGetStaticPropsType } from "next";
 import SeekAndBuild from "@components/seek-and-build";
@@ -14,9 +14,6 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <div>
             <Header />
-            <TopContainer visionText={apiData?.vision_text!} />
-            <SeekAndBuild seekAndBuildData={apiData!} />
-            <Products productsData={apiData!} />
         </div>
     );
 };
@@ -26,7 +23,7 @@ export async function getStaticProps() {
         const { data } = await axios.get<getReferenceIDInterface>(cmsBaseURL);
         const { data: cmsApiData } = await axios.get<CMSDataRootObject>(getCMSDataURL(data.refs[0].ref));
         return {
-            props: { cmsApiData: cmsApiData.results.find((el) => el.slugs[0] === "home-page")?.data }
+            props: { cmsApiData: cmsApiData.results.find((el) => el.slugs[0] === "about-us")?.data }
         };
     } catch (err) {
         return {
