@@ -2,7 +2,6 @@ import { css } from "@emotion/css";
 
 const container = css`
     padding: 40px;
-    background: #e6fdf6;
 `;
 
 const cardContainer = css`

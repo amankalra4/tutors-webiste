@@ -1,10 +1,11 @@
 import { css } from "@emotion/css";
 
 const headerContainer = css`
-    padding: 40px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #f6f5f5;
 `;
 
 const listContainer = css`
@@ -20,13 +21,4 @@ const listContainer = css`
     }
 `;
 
-const logoContainer = css`
-    display: flex;
-    align-items: center;
-    > h1 {
-        font-size: 18px;
-        margin-left: 10px;
-    }
-`;
-
-export { headerContainer, listContainer, logoContainer };
+export { headerContainer, listContainer };

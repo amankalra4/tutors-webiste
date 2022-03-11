@@ -11,7 +11,9 @@ const SeekAndBuild = ({ seekAndBuildData }: { seekAndBuildData: CollectiveData }
 
     return (
         <div className={container}>
-            <SubHeading title="Seek and Build" />
+            <div style={{ textAlign: "center", margin: "0 0 3rem 0" }}>
+                <SubHeading title="Seek and Build" />
+            </div>
             <AlternateComponent
                 imageSrc={communication_image.url}
                 imageAltText={communication_image.alt}

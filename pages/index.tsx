@@ -3,11 +3,11 @@ import { cmsBaseURL, getCMSDataURL } from "@modules/constants";
 import { CMSDataRootObject } from "@modules/interface/cms-api-data";
 import axios from "axios";
 import Header from "../src/components/header";
-import React, { useEffect } from "react";
 import TopContainer from "@components/top-container";
 import { InferGetStaticPropsType } from "next";
 import SeekAndBuild from "@components/seek-and-build";
-import Products from "@src/components/products";
+import Products from "@components/products";
+import Footer from "@components/footer";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const apiData = props.cmsApiData;
@@ -17,6 +17,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <TopContainer visionText={apiData?.vision_text!} />
             <SeekAndBuild seekAndBuildData={apiData!} />
             <Products productsData={apiData!} />
+            <Footer address={apiData?.address!} mobileNumber={apiData?.mobile_number!} email={apiData?.email_id!} />
         </div>
     );
 };

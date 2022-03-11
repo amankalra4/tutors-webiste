@@ -35,7 +35,9 @@ const Products = ({ productsData }: { productsData: CollectiveData }) => {
     ];
     return (
         <div className={container}>
-            <SubHeading title="Products" />
+            <div style={{ textAlign: "center", margin: "0 0 3rem 0" }}>
+                <SubHeading title="Products" />
+            </div>
             <div className={cardContainer}>
                 {data.map((el, index) => (
                     <CardDetails key={String(index)} imageSrc={el.imageData.url} altText={el.imageData.alt}>
