@@ -1,6 +1,6 @@
 import { Address, MobileNumber, EmailId } from "@modules/interface/cms-api-data";
+import useReactViewPort from "@modules/use-react-viewport";
 import Link from "next/link";
-import React from "react";
 import { LogoContainer } from "../logo";
 import { footerContainer, footer, addressDetail } from "./styles";
 
@@ -13,8 +13,9 @@ interface IFooterProps {
 const Footer = ({ address, email, mobileNumber }: IFooterProps) => {
     const mobileNumberText = mobileNumber.find((el) => el.type === "list-item")?.text;
     const emailText = email.find((el) => el.type === "list-item")?.text;
+    const { getStyles, viewPortRef } = useReactViewPort();
     return (
-        <footer className={footerContainer}>
+        <footer className={footerContainer} style={{ ...getStyles() }} ref={viewPortRef}>
             <div className={footer}>
                 <div style={{ marginBottom: "2rem" }}>
                     <LogoContainer />

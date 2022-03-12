@@ -20,7 +20,7 @@ type IArrayRef = {
 export const RefContext = createContext<IArrayRef[]>([]);
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const apiData = props.cmsApiData;
+    const apiData = props.getData;
     const seekAndBuildRef = useRef() as MutableRefObject<HTMLInputElement>;
     const productsRef = useRef() as MutableRefObject<HTMLInputElement>;
     const footerRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -38,31 +38,33 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             refValue: footerRef
         }
     ];
-    const x = arrayRef.find((el1) => el1.refName === "footerRef")?.refValue;
     const { push } = useRouter();
 
     const handleClick = (inp: MutableRefObject<HTMLInputElement> | undefined, isRefOrRoute: boolean | string) => {
-        // kept === true because it can be string as well
-        if (isRefOrRoute === true) {
+        if (typeof isRefOrRoute === "boolean") {
             inp!.current.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-            push(isRefOrRoute as string);
+            push(isRefOrRoute);
         }
     };
+
+    if (!apiData) {
+        return <p>Error</p>;
+    }
 
     return (
         <div>
             <RefContext.Provider value={arrayRef}>
                 <Header handleClick={handleClick} />
-                <TopContainer visionText={apiData?.vision_text!} />
+                <TopContainer visionText={apiData.vision_text} />
                 <div ref={seekAndBuildRef}>
-                    <SeekAndBuild seekAndBuildData={apiData!} />
+                    <SeekAndBuild seekAndBuildData={apiData} />
                 </div>
                 <div ref={productsRef}>
-                    <Products productsData={apiData!} />
+                    <Products productsData={apiData} />
                 </div>
                 <div ref={footerRef}>
-                    <Footer address={apiData?.address!} mobileNumber={apiData?.mobile_number!} email={apiData?.email_id!} />
+                    <Footer address={apiData.address} mobileNumber={apiData.mobile_number} email={apiData.email_id} />
                 </div>
             </RefContext.Provider>
         </div>
@@ -74,11 +76,11 @@ export async function getStaticProps() {
         const { data } = await axios.get<getReferenceIDInterface>(cmsBaseURL);
         const { data: cmsApiData } = await axios.get<CMSDataRootObject>(getCMSDataURL(data.refs[0].ref));
         return {
-            props: { cmsApiData: cmsApiData.results.find((el) => el.slugs[0] === "home-page")?.data }
+            props: { getData: cmsApiData.results.find((el) => el.slugs[0] === "home-page")?.data }
         };
     } catch (err) {
         return {
-            props: { cmsApiData: null }
+            props: { getData: null }
         };
     }
 }
