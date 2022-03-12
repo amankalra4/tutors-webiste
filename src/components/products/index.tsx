@@ -8,7 +8,8 @@ import { CardActionArea } from "@mui/material";
 import { CollectiveData } from "@src/modules/interface/cms-api-data";
 import { cardContainer, container, individualCard } from "./styles";
 import SubHeading from "../subHeading";
-import Image from "next/image";
+import { useRef } from "react";
+import { useInViewport } from "react-in-viewport";
 
 const Products = ({ productsData }: { productsData: CollectiveData }) => {
     const {
@@ -33,8 +34,19 @@ const Products = ({ productsData }: { productsData: CollectiveData }) => {
             imageData: competitive_exams_image
         }
     ];
+    const myRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+    const { inViewport, enterCount } = useInViewport(myRef);
+    const getStyles = () => {
+        if (inViewport && enterCount === 1) {
+            return { WebkitTransition: "opacity 2s ease-in-out" };
+        } else if (!inViewport && enterCount < 1) {
+            return { WebkitTransition: "none", opacity: "0" };
+        } else {
+            return {};
+        }
+    };
     return (
-        <div className={container}>
+        <div className={container} ref={myRef} style={{ ...getStyles() }}>
             <div style={{ textAlign: "center", margin: "0 0 3rem 0" }}>
                 <SubHeading title="Products" />
             </div>

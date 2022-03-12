@@ -1,14 +1,14 @@
 import { CollectiveData, CommunicationList } from "@modules/interface/cms-api-data";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import SubHeading from "../subHeading";
 import { container, seekAndBuildImages } from "./styles";
+import { useInViewport } from "react-in-viewport";
 
 const SeekAndBuild = ({ seekAndBuildData }: { seekAndBuildData: CollectiveData }) => {
     const { communication_image, communication_list, digital_marketing_image, seo, seo_image, digital_marketing } =
         seekAndBuildData;
-
     return (
         <div className={container}>
             <div style={{ textAlign: "center", margin: "0 0 3rem 0" }}>
@@ -48,13 +48,26 @@ interface IAlternateComponentProps {
 }
 
 const AlternateComponent = ({ flexDirection, imageSrc, imageAltText, subHeading, displayData }: IAlternateComponentProps) => {
+    const myRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+    const { inViewport, enterCount } = useInViewport(myRef);
+    const getStyles = () => {
+        if (inViewport && enterCount === 1) {
+            return { WebkitTransition: "opacity 2s ease-in-out" };
+        } else if (!inViewport && enterCount < 1) {
+            return { WebkitTransition: "none", opacity: "0" };
+        } else {
+            return {};
+        }
+    };
     return (
         <div
             style={{
                 display: "flex",
                 flexDirection,
-                gap: "40px"
+                gap: "40px",
+                ...getStyles()
             }}
+            ref={myRef}
         >
             <Image
                 className={seekAndBuildImages}

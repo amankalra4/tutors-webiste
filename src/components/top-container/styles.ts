@@ -5,7 +5,8 @@ const container = css`
     display: grid;
     grid-template-columns: 0.25fr 1fr;
     width: 70%;
-    margin: 2rem auto;
+    padding: 2rem 0;
+    margin: 3rem auto;
     min-height: 260px;
     grid-column-gap: 200px;
     background-image: url(${backgroundHomeImage});
@@ -24,8 +25,4 @@ const visionTextClass = css`
     }
 `;
 
-export {
-    container,
-    homePageImageClass,
-    visionTextClass
-};
+export { container, homePageImageClass, visionTextClass };
