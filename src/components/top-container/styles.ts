@@ -5,7 +5,7 @@ const container = css`
     display: grid;
     grid-template-columns: 0.25fr 1fr;
     width: 70%;
-    padding: 2rem 0;
+    padding: 3rem 0 2rem;
     margin: 3rem auto;
     min-height: 260px;
     grid-column-gap: 200px;
