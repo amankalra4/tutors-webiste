@@ -11,11 +11,7 @@ import Products from "@src/components/products";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const apiData = props.cmsApiData;
-    return (
-        <div>
-            <Header />
-        </div>
-    );
+    return <div>{/* <Header /> */}</div>;
 };
 
 export async function getStaticProps() {
