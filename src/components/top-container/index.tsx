@@ -1,10 +1,14 @@
-import { homePageImage } from "@modules/constants";
-import { VisionText } from "@modules/interface/cms-api-data";
+import { HomePageImage, VisionText } from "@modules/interface/cms-api-data";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { container, homePageImageClass, visionTextClass } from "./styles";
 
-const TopContainer = ({ visionText }: { visionText: VisionText[] }) => {
+interface ITopContainerProps {
+    visionText: VisionText[];
+    homeImage: HomePageImage;
+}
+
+const TopContainer = ({ visionText, homeImage }: ITopContainerProps) => {
     const getTitle = visionText.filter((el) => el.type === "list-item");
     return (
         <div className={container}>
@@ -15,17 +19,24 @@ const TopContainer = ({ visionText }: { visionText: VisionText[] }) => {
                     Collaborate. Create.
                 </Typography>
                 {getTitle.map((el, index) => (
-                    <p key={index}>{el.text}</p>
+                    <Typography
+                        key={index}
+                        gutterBottom
+                        variant="h6"
+                        component="p"
+                        style={{ marginBottom: "20px", fontStyle: "italic" }}
+                    >
+                        {el.text}
+                    </Typography>
                 ))}
             </div>
             <div className={homePageImageClass}>
                 <Image
-                    priority
-                    src={homePageImage}
+                    src={homeImage.url}
                     quality={100}
                     width={500}
                     height={400}
-                    alt="home-page"
+                    alt={homeImage.alt}
                     className={homePageImageClass}
                 />
             </div>

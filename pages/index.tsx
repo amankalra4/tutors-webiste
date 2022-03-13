@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { getReferenceIDInterface } from "@modules/interface/api";
 import { cmsBaseURL, getCMSDataURL } from "@modules/constants";
 import { CMSDataRootObject } from "@modules/interface/cms-api-data";
@@ -9,8 +10,9 @@ import SeekAndBuild from "@components/seek-and-build";
 import Products from "@components/products";
 import Footer from "@components/footer";
 import { createContext, MutableRefObject, useRef } from "react";
-import { useRouter } from "next/router";
 import { IRefName } from "@src/components/navbar/constants";
+import { css } from "@emotion/css";
+import useNavHandleClick from "@modules/use-handle-nav-click";
 
 type IArrayRef = {
     refName: IRefName;
@@ -19,11 +21,22 @@ type IArrayRef = {
 
 export const RefContext = createContext<IArrayRef[]>([]);
 
+const circleImage = css`
+    position: absolute;
+    top: -500px;
+    left: -250px;
+    z-index: -1;
+    transform: rotate(20deg);
+    img {
+        width: 48rem;
+        transform: rotate(240deg);
+    }
+`;
+
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const apiData = props.getData;
     const seekAndBuildRef = useRef() as MutableRefObject<HTMLInputElement>;
     const productsRef = useRef() as MutableRefObject<HTMLInputElement>;
-    const footerRef = useRef() as MutableRefObject<HTMLInputElement>;
     const arrayRef: IArrayRef[] = [
         {
             refName: "seekAndBuildRef",
@@ -32,21 +45,9 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         {
             refName: "productsRef",
             refValue: productsRef
-        },
-        {
-            refName: "footerRef",
-            refValue: footerRef
         }
     ];
-    const { push } = useRouter();
-
-    const handleClick = (inp: MutableRefObject<HTMLInputElement> | undefined, isRefOrRoute: boolean | string) => {
-        if (typeof isRefOrRoute === "boolean") {
-            inp!.current.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-            push(isRefOrRoute);
-        }
-    };
+    const { handleClick } = useNavHandleClick();
 
     if (!apiData) {
         return <p>Error</p>;
@@ -54,18 +55,19 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     return (
         <div>
+            <div className={circleImage}>
+                <img src={apiData["sun-background"].url} alt={apiData["sun-background"].alt} />
+            </div>
             <RefContext.Provider value={arrayRef}>
-                <Header handleClick={handleClick} />
-                <TopContainer visionText={apiData.vision_text} />
+                <Header handleClick={handleClick} showWhite={false} currentPage="/" />
+                <TopContainer visionText={apiData.vision_text} homeImage={apiData.home_page_image} />
                 <div ref={seekAndBuildRef}>
                     <SeekAndBuild seekAndBuildData={apiData} />
                 </div>
                 <div ref={productsRef}>
                     <Products productsData={apiData} />
                 </div>
-                <div ref={footerRef}>
-                    <Footer address={apiData.address} mobileNumber={apiData.mobile_number} email={apiData.email_id} />
-                </div>
+                <Footer address={apiData.address} mobileNumber={apiData.mobile_number} email={apiData.email_id} />
             </RefContext.Provider>
         </div>
     );

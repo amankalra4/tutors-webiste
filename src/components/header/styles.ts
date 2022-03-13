@@ -5,7 +5,6 @@ const headerContainer = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f6f5f5;
 `;
 
 // const mobile = css`
@@ -25,9 +24,7 @@ const headerContainer = css`
 const itemsContainer = css`
     display: flex;
     justify-content: space-evenly;
-    li {
-        list-style: none;
-        margin-left: 20px;
+    > * {
         cursor: pointer;
         :hover {
             color: gray;

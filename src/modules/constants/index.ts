@@ -1,12 +1,12 @@
 export const cmsBaseURL = "https://tutors-website.prismic.io/api/v2";
 
 export const getCMSDataURL = (refId: string) => {
-    return `${cmsBaseURL}/documents/search?ref=${refId}#format=json`
-}
+    return `${cmsBaseURL}/documents/search?ref=${refId}#format=json`;
+};
+
+export const headerImageText = "Learn with Elite";
 
 const commonURL = "https://images.prismic.io/tutors-website";
-
-export const homePageImage = `${commonURL}/d03573a9-8eff-4238-9e96-14334da0987f_tutor+home+logo.jpg?auto=compress,format`;
 
 export const logo = `${commonURL}/8450c071-8adb-4d24-9a30-9991c8a5bec4_Tutors+logo.jpg?auto=compress,format`;
 

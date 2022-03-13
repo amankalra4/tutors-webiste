@@ -1,8 +1,8 @@
 import { css } from "@emotion/css";
 import { logo } from "@src/modules/constants";
 import Image from "next/image";
-
-const heading = "Learn with Elite";
+import { useRouter } from "next/router";
+import { headerImageText } from "@modules/constants/index";
 
 const logoContainer = css`
     display: flex;
@@ -13,12 +13,16 @@ const logoContainer = css`
     }
     img {
         border-radius: 50%;
+        cursor: pointer;
     }
 `;
 
-export const LogoContainer = () => (
-    <div className={logoContainer}>
-        <Image src={logo} alt="home" width={80} height={80} />
-        <h1>{heading}</h1>
-    </div>
-);
+export const LogoContainer = () => {
+    const { push } = useRouter();
+    return (
+        <div className={logoContainer}>
+            <Image src={logo} alt="home" width={80} height={80} onClick={() => push("/")} />
+            <h1>{headerImageText}</h1>
+        </div>
+    );
+};

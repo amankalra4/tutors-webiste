@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 
-const SubHeading = ({ title }: { title: string }) => (
-    <Typography variant="h4" component="h1" gutterBottom>
+const SubHeading = ({ title, color }: { title: string; color?: string }) => (
+    <Typography variant="h4" component="h1" gutterBottom style={{ color: `${color ? color : ""}` }}>
         {title}
     </Typography>
 );

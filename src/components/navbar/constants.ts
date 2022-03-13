@@ -1,4 +1,5 @@
-export type IRefName = "seekAndBuildRef" | "productsRef" | "footerRef";
+export type IRefName = "seekAndBuildRef" | "productsRef";
+export type IRouting = "/" | "/about-us" | "/pricing";
 
 type INavItems = {
     name: string;
@@ -6,7 +7,7 @@ type INavItems = {
     route: string | null;
 };
 
-const navItems: INavItems[] = [
+const homePageNavItems: INavItems[] = [
     {
         name: "Seek & Build",
         refName: "seekAndBuildRef",
@@ -26,12 +27,51 @@ const navItems: INavItems[] = [
         name: "About Us",
         refName: null,
         route: "/about-us"
-    },
-    {
-        name: "Contact Us",
-        refName: "footerRef",
-        route: null
     }
 ];
 
-export { navItems };
+const aboutUsNavItems: INavItems[] = [
+    {
+        name: "Home",
+        refName: null,
+        route: "/"
+    },
+    {
+        name: "Pricing",
+        refName: null,
+        route: "/pricing"
+    }
+];
+
+const pricingNavItems: INavItems[] = [
+    {
+        name: "Home",
+        refName: null,
+        route: "/"
+    },
+    {
+        name: "About Us",
+        refName: null,
+        route: "/about-us"
+    }
+];
+
+interface IHeaderItems {
+    itemsToBeShown: INavItems[];
+    currentPage: IRouting;
+}
+
+export const headerItems: IHeaderItems[] = [
+    {
+        itemsToBeShown: homePageNavItems,
+        currentPage: "/"
+    },
+    {
+        itemsToBeShown: aboutUsNavItems,
+        currentPage: "/about-us"
+    },
+    {
+        itemsToBeShown: pricingNavItems,
+        currentPage: "/pricing"
+    }
+];

@@ -9,10 +9,6 @@ const container = css`
     margin: 3rem auto;
     min-height: 260px;
     grid-column-gap: 200px;
-    background-image: url(${backgroundHomeImage});
-    background-position: -5% 11%;
-    background-size: 532px 455px;
-    background-repeat: no-repeat;
 `;
 
 const homePageImageClass = css`

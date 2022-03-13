@@ -283,6 +283,8 @@ export interface CollectiveData {
     address: Address[];
     mobile_number: MobileNumber[];
     email_id: EmailId[];
+    "about-us-image": HomePageImage;
+    "sun-background": HomePageImage;
 }
 
 export interface Result {
