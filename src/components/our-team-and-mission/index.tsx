@@ -1,6 +1,5 @@
 import { OurTeam, OurMission } from "@modules/interface/cms-api-data";
 import Typography from "@mui/material/Typography";
-import SubHeading from "../subHeading";
 
 interface IOurTeamAndMissionProps {
     ourTeamContent: OurTeam[];
@@ -28,8 +27,10 @@ interface ICommonDataProps {
 }
 const CommonData = ({ heading, content }: ICommonDataProps) => {
     return (
-        <div>
-            <SubHeading title={heading} color="red" />
+        <div style={{ margin: "2rem 0 0" }}>
+            <Typography gutterBottom variant="h4" component="p" style={{ color: "red" }}>
+                {heading}
+            </Typography>
             <Typography gutterBottom variant="h6" component="p">
                 {content}
             </Typography>

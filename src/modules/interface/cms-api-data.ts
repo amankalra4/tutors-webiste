@@ -22,6 +22,36 @@ export interface BankAccountDetail {
     spans: any[];
 }
 
+export interface CommunicationPricing {
+    type: string;
+    text: string;
+    spans: any[];
+}
+
+export interface MarchExamsPricing {
+    type: string;
+    text: string;
+    spans: any[];
+}
+
+export interface OtherSkillsPricing {
+    type: string;
+    text: string;
+    spans: any[];
+}
+
+export interface Dimensions2 {
+    width: number;
+    height: number;
+}
+
+export interface AboutUsImage {
+    dimensions: Dimensions2;
+    alt: string;
+    copyright?: any;
+    url: string;
+}
+
 export interface OurTeam {
     type: string;
     text: string;
@@ -52,14 +82,26 @@ export interface Creativity {
     spans: any[];
 }
 
-export interface Dimensions2 {
+export interface Dimensions3 {
     width: number;
     height: number;
 }
 
 export interface HomePageImage {
-    dimensions: Dimensions2;
-    alt?: any;
+    dimensions: Dimensions3;
+    alt: string;
+    copyright?: any;
+    url: string;
+}
+
+export interface Dimensions4 {
+    width: number;
+    height: number;
+}
+
+export interface SunBackground {
+    dimensions: Dimensions4;
+    alt: string;
     copyright?: any;
     url: string;
 }
@@ -76,13 +118,13 @@ export interface CommunicationList {
     spans: any[];
 }
 
-export interface Dimensions3 {
+export interface Dimensions5 {
     width: number;
     height: number;
 }
 
 export interface CommunicationImage {
-    dimensions: Dimensions3;
+    dimensions: Dimensions5;
     alt: string;
     copyright?: any;
     url: string;
@@ -94,13 +136,13 @@ export interface Seo {
     spans: any[];
 }
 
-export interface Dimensions4 {
+export interface Dimensions6 {
     width: number;
     height: number;
 }
 
 export interface SeoImage {
-    dimensions: Dimensions4;
+    dimensions: Dimensions6;
     alt: string;
     copyright?: any;
     url: string;
@@ -112,13 +154,13 @@ export interface DigitalMarketing {
     spans: any[];
 }
 
-export interface Dimensions5 {
+export interface Dimensions7 {
     width: number;
     height: number;
 }
 
 export interface DigitalMarketingImage {
-    dimensions: Dimensions5;
+    dimensions: Dimensions7;
     alt: string;
     copyright?: any;
     url: string;
@@ -130,13 +172,13 @@ export interface Python {
     spans: any[];
 }
 
-export interface Dimensions6 {
+export interface Dimensions8 {
     width: number;
     height: number;
 }
 
 export interface PythonImage {
-    dimensions: Dimensions6;
+    dimensions: Dimensions8;
     alt: string;
     copyright?: any;
     url: string;
@@ -148,13 +190,13 @@ export interface WebDevelopment {
     spans: any[];
 }
 
-export interface Dimensions7 {
+export interface Dimensions9 {
     width: number;
     height: number;
 }
 
 export interface WebDevImage {
-    dimensions: Dimensions7;
+    dimensions: Dimensions9;
     alt: string;
     copyright?: any;
     url: string;
@@ -166,13 +208,13 @@ export interface MarchExam {
     spans: any[];
 }
 
-export interface Dimensions8 {
+export interface Dimensions10 {
     width: number;
     height: number;
 }
 
 export interface MarchExamsImage {
-    dimensions: Dimensions8;
+    dimensions: Dimensions10;
     alt: string;
     copyright?: any;
     url: string;
@@ -184,13 +226,13 @@ export interface InterviewProgram {
     spans: any[];
 }
 
-export interface Dimensions9 {
+export interface Dimensions11 {
     width: number;
     height: number;
 }
 
 export interface InterviewTrainingImage {
-    dimensions: Dimensions9;
+    dimensions: Dimensions11;
     alt: string;
     copyright?: any;
     url: string;
@@ -202,34 +244,16 @@ export interface CompetitiveExam {
     spans: any[];
 }
 
-export interface Dimensions10 {
+export interface Dimensions12 {
     width: number;
     height: number;
 }
 
 export interface CompetitiveExamsImage {
-    dimensions: Dimensions10;
+    dimensions: Dimensions12;
     alt: string;
     copyright?: any;
     url: string;
-}
-
-export interface CommunicationSkillsPricing {
-    type: string;
-    text: string;
-    spans: any[];
-}
-
-export interface OtherSkillsPrice {
-    type: string;
-    text: string;
-    spans: any[];
-}
-
-export interface MarchExamsPricing {
-    type: string;
-    text: string;
-    spans: any[];
 }
 
 export interface Address {
@@ -254,12 +278,17 @@ export interface CollectiveData {
     upi_image: UpiImage;
     upi_content: UpiContent[];
     bank_account_details: BankAccountDetail[];
+    communication_pricing: CommunicationPricing[];
+    march_exams_pricing: MarchExamsPricing[];
+    other_skills_pricing: OtherSkillsPricing[];
+    "about-us-image": AboutUsImage;
     our_team: OurTeam[];
     our_mission: OurMission[];
     positivity: Positivity[];
     inclusivity: Inclusivity[];
     creativity: Creativity[];
     home_page_image: HomePageImage;
+    "sun-background": SunBackground;
     vision_text: VisionText[];
     communication_list: CommunicationList[];
     communication_image: CommunicationImage;
@@ -277,14 +306,9 @@ export interface CollectiveData {
     interview_training_image: InterviewTrainingImage;
     competitive_exams: CompetitiveExam[];
     competitive_exams_image: CompetitiveExamsImage;
-    communication_skills_pricing: CommunicationSkillsPricing[];
-    other_skills_price: OtherSkillsPrice[];
-    march_exams_pricing: MarchExamsPricing[];
     address: Address[];
     mobile_number: MobileNumber[];
     email_id: EmailId[];
-    "about-us-image": HomePageImage;
-    "sun-background": HomePageImage;
 }
 
 export interface Result {
@@ -296,7 +320,7 @@ export interface Result {
     tags: any[];
     first_publication_date: Date;
     last_publication_date: Date;
-    slugs: string[];
+    slugs: SlugType[];
     linked_documents: any[];
     lang: string;
     alternate_languages: any[];
@@ -315,3 +339,5 @@ export interface CMSDataRootObject {
     version: string;
     license: string;
 }
+
+export type SlugType = "home-page" | "about-us" | "payments";

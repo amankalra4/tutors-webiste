@@ -4,13 +4,13 @@ import { CMSDataRootObject } from "@modules/interface/cms-api-data";
 import axios from "axios";
 import { InferGetStaticPropsType } from "next";
 import Header from "@components/header";
-import AboutUsImage from "@components/about-us-image";
-import OurValues from "@components/our-values-content";
-import OurTeamAndMission from "@components/our-team-and-mission";
 import useNavHandleClick from "@modules/use-handle-nav-click";
 import Footer from "@components/footer";
+import React from "react";
+import PaymentInfo from "@components/payment-info";
+import PaymentContent from "@components/payment-content";
 
-const AboutUs = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { footerData, getData } = props;
     const { handleClick } = useNavHandleClick();
 
@@ -19,20 +19,13 @@ const AboutUs = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     }
 
     const { address, mobile_number, email_id } = footerData;
-    const { our_team, our_mission, creativity, inclusivity, positivity, "about-us-image": aboutUsImage } = getData;
+    const { upi_image, upi_content } = getData;
 
     return (
         <div>
-            <AboutUsImage aboutUsImage={aboutUsImage} />
-            <div style={{ position: "absolute", top: 0, width: "100%" }}>
-                <Header showWhite={false} currentPage={"/about-us"} handleClick={handleClick} />
-            </div>
-            <div style={{ padding: "20px 40px 40px", background: "#feefc9" }}>
-                <OurTeamAndMission ourTeamContent={our_team} ourMission={our_mission} />
-                <div style={{ margin: "2rem 0 0" }}>
-                    <OurValues creativity={creativity} inclusivity={inclusivity} positivity={positivity} />
-                </div>
-            </div>
+            <Header showWhite={false} currentPage={"/pricing"} handleClick={handleClick} />
+            <PaymentInfo upiImage={upi_image} upiContent={upi_content} />
+            <PaymentContent />
             <Footer address={address} mobileNumber={mobile_number} email={email_id} />
         </div>
     );
@@ -42,9 +35,10 @@ export async function getStaticProps() {
     try {
         const { data } = await axios.get<getReferenceIDInterface>(cmsBaseURL);
         const { data: cmsApiData } = await axios.get<CMSDataRootObject>(getCMSDataURL(data.refs[0].ref));
+        console.log("cmsApiData: ", cmsApiData);
         return {
             props: {
-                getData: cmsApiData.results.find((el) => el.slugs[0] === "about-us")?.data,
+                getData: cmsApiData.results.find((el) => el.slugs[0] === "payments")?.data,
                 footerData: cmsApiData.results.find((el) => el.slugs[0] === "home-page")?.data
             }
         };
@@ -55,4 +49,4 @@ export async function getStaticProps() {
     }
 }
 
-export default AboutUs;
+export default Pricing;

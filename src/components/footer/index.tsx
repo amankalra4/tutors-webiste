@@ -56,7 +56,7 @@ const Footer = ({ address, email, mobileNumber }: IFooterProps) => {
                             </Link>
                         </p>
                         <p style={{ cursor: "pointer" }}>
-                            <Link href="/about-us" passHref>
+                            <Link href="/pricing" passHref>
                                 <p>
                                     <u>Pricing</u>
                                 </p>
