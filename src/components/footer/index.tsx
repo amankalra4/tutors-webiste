@@ -44,24 +44,14 @@ const Footer = ({ address, email, mobileNumber }: IFooterProps) => {
                             </a>
                         </div>
                     </div>
-                    <div>
-                        <p>
-                            <strong> Quick Links</strong>
-                        </p>
-                        <p style={{ cursor: "pointer" }}>
-                            <Link href="/about-us" passHref>
-                                <p>
-                                    <u>About Us</u>
-                                </p>
-                            </Link>
-                        </p>
-                        <p style={{ cursor: "pointer" }}>
-                            <Link href="/pricing" passHref>
-                                <p>
-                                    <u>Pricing</u>
-                                </p>
-                            </Link>
-                        </p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "30px", color: "black" }}>
+                        <strong> Quick Links</strong>
+                        <Link href="/about-us" passHref>
+                            <a style={{ textDecoration: "none", color: "black" }}>About Us</a>
+                        </Link>
+                        <Link href="/pricing" passHref>
+                            <a style={{ textDecoration: "none", color: "black" }}>Pricing</a>
+                        </Link>
                     </div>
                 </div>
             </div>
