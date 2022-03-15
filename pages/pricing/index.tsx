@@ -27,6 +27,8 @@ const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     communication_pricing,
     march_exams_pricing,
     other_skills_pricing,
+    phone_pe,
+    gpay,
   } = getData;
 
   return (
@@ -40,6 +42,8 @@ const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         upiImage={upi_image}
         upiContent={upi_content}
         bank_account_details={bank_account_details}
+        phone_pe_image={phone_pe}
+        gpayImage={gpay}
       />
       <PaymentContent
         communication_pricing={communication_pricing}
