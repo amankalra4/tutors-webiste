@@ -20,7 +20,7 @@ const Grid = styled(MuiGrid)(({ theme }) => ({
 
 const QRCode = ({ imageURL, alt }: { imageURL: string; alt: string }) => (
     <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={imageURL} alt={alt} width="300px" height="300px" />
+        <img src={imageURL} alt={alt} width="300px" height="300px" loading="eager" />
     </div>
 );
 

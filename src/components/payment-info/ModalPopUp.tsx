@@ -29,7 +29,15 @@ const ModalPopUp = ({ paymentImage, button, url }: ModalPopUpType) => {
 
     return (
         <div>
-            <img src={url} alt={button} width="60px" height="60px" onClick={handleOpen} style={{ cursor: "pointer" }} />
+            <img
+                src={url}
+                alt={button}
+                width="60px"
+                height="60px"
+                onClick={handleOpen}
+                style={{ cursor: "pointer" }}
+                loading="eager"
+            />
             <Modal open={open} onClose={handleClose}>
                 <Box sx={style}>
                     <img src={paymentImage.url} alt={paymentImage.alt} width="100%" height="100%" />
