@@ -11,42 +11,66 @@ import PaymentInfo from "@components/payment-info";
 import PaymentContent from "@components/payment-content";
 
 const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const { footerData, getData } = props;
-    const { handleClick } = useNavHandleClick();
+  const { footerData, getData } = props;
+  const { handleClick } = useNavHandleClick();
 
-    if (!getData || !footerData) {
-        return <p>Error</p>;
-    }
+  if (!getData || !footerData) {
+    return <p>Error</p>;
+  }
 
-    const { address, mobile_number, email_id } = footerData;
-    const { upi_image, upi_content } = getData;
+  const { address, mobile_number, email_id } = footerData;
+  console.log("getData", getData);
+  const {
+    upi_image,
+    upi_content,
+    bank_account_details,
+    communication_pricing,
+    march_exams_pricing,
+    other_skills_pricing,
+  } = getData;
 
-    return (
-        <div>
-            <Header showWhite={false} currentPage={"/pricing"} handleClick={handleClick} />
-            <PaymentInfo upiImage={upi_image} upiContent={upi_content} />
-            <PaymentContent />
-            <Footer address={address} mobileNumber={mobile_number} email={email_id} />
-        </div>
-    );
+  return (
+    <div>
+      <Header
+        showWhite={false}
+        currentPage={"/pricing"}
+        handleClick={handleClick}
+      />
+      <PaymentInfo
+        upiImage={upi_image}
+        upiContent={upi_content}
+        bank_account_details={bank_account_details}
+      />
+      <PaymentContent
+        communication_pricing={communication_pricing}
+        march_exam_pricing={march_exams_pricing}
+        other_skills_pricing={other_skills_pricing}
+      />
+      <Footer address={address} mobileNumber={mobile_number} email={email_id} />
+    </div>
+  );
 };
 
 export async function getStaticProps() {
-    try {
-        const { data } = await axios.get<getReferenceIDInterface>(cmsBaseURL);
-        const { data: cmsApiData } = await axios.get<CMSDataRootObject>(getCMSDataURL(data.refs[0].ref));
-        console.log("cmsApiData: ", cmsApiData);
-        return {
-            props: {
-                getData: cmsApiData.results.find((el) => el.slugs[0] === "payments")?.data,
-                footerData: cmsApiData.results.find((el) => el.slugs[0] === "home-page")?.data
-            }
-        };
-    } catch (err) {
-        return {
-            props: { getData: null, footerData: null }
-        };
-    }
+  try {
+    const { data } = await axios.get<getReferenceIDInterface>(cmsBaseURL);
+    const { data: cmsApiData } = await axios.get<CMSDataRootObject>(
+      getCMSDataURL(data.refs[0].ref)
+    );
+    console.log("cmsApiData: ", cmsApiData);
+    return {
+      props: {
+        getData: cmsApiData.results.find((el) => el.slugs[0] === "payments")
+          ?.data,
+        footerData: cmsApiData.results.find((el) => el.slugs[0] === "home-page")
+          ?.data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: { getData: null, footerData: null },
+    };
+  }
 }
 
 export default Pricing;
