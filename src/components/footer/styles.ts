@@ -2,30 +2,74 @@ import { css } from "@emotion/css";
 
 const footerContainer = css`
     background: #f6f5f5;
-    display: flex;
-    justify-content: center;
-`;
-
-const footer = css`
-    max-width: 70rem;
-    width: 70rem;
-    padding: 2.8rem 0px 2.2rem;
-    @media (max-width: 480px) {
-        padding: 4.8rem 1rem 14.2rem;
-    }
-    @media (max-width: 768px) {
-        max-width: 45rem;
-        width: 45rem;
-        padding: 4.8rem 1rem 2.2rem;
-    }
+    padding: 40px;
 `;
 
 const addressDetail = css`
-    width: 206px;
     line-height: 1.5rem;
-    @media (max-width: 768px) {
-        width: 200px;
+`;
+
+const addressContainer = css`
+    max-width: 40ch;
+    @media (max-width: 767px) {
+        width: 100%;
     }
 `;
 
-export { footerContainer, footer, addressDetail };
+const dataContainer = css`
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 20px 0;
+    gap: 40px;
+    align-items: flex-start;
+    @media (max-width: 767px) {
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px 0 0;
+    }
+`;
+
+const footerCenterContainer = css`
+    width: 80%;
+    margin: 0 auto;
+    @media (max-width: 767px) {
+        width: unset;
+    }
+`;
+
+const mobileContainer = css`
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+`;
+
+const emailContainer = css`
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+`;
+
+const quickLinksContainer = css`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+`;
+
+const commonLinks = css`
+    text-decoration: none;
+    color: #323232;
+`;
+
+export {
+    footerContainer,
+    addressDetail,
+    addressContainer,
+    dataContainer,
+    footerCenterContainer,
+    mobileContainer,
+    emailContainer,
+    quickLinksContainer,
+    commonLinks
+};

@@ -15,6 +15,9 @@ const logoContainer = css`
         border-radius: 50%;
         cursor: pointer;
     }
+    @media (max-width: 767px) {
+        justify-content: space-between;
+    }
 `;
 
 export const LogoContainer = () => {

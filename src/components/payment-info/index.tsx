@@ -7,6 +7,8 @@ import { BankAccountDetail, GPayImage, PhonePeImage, UpiContent, UpiImage } from
 import ModalPopUp from "./ModalPopUp";
 import { googlePayImage, phonePayImage } from "@modules/constants";
 import Typography from "@mui/material/Typography";
+import { useMediaQuery } from "@mui/material";
+import { mobileDivider, accountDetailsContainerMobile, logoContainer, upiText } from "./styles";
 
 const Grid = styled(MuiGrid)(({ theme }) => ({
     width: "100%",
@@ -17,8 +19,8 @@ const Grid = styled(MuiGrid)(({ theme }) => ({
 }));
 
 const QRCode = ({ imageURL, alt }: { imageURL: string; alt: string }) => (
-    <div style={{ display: "flex", justifyContent: "center", margin: "0 0 0 8rem" }}>
-        <img src={imageURL} alt={alt} width="50%" height="50%" />
+    <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={imageURL} alt={alt} width="300px" height="300px" />
     </div>
 );
 
@@ -33,7 +35,7 @@ const AccountDetails = ({
     phonePeImage: PhonePeImage;
     gPayImage: GPayImage;
 }) => (
-    <div>
+    <div className={accountDetailsContainerMobile}>
         <div>
             <Typography gutterBottom variant="h5">
                 <u>{accountHeading}</u>
@@ -48,14 +50,7 @@ const AccountDetails = ({
             <Typography gutterBottom variant="h5">
                 <u>You can also pay with</u>
             </Typography>
-            <div
-                style={{
-                    display: "flex",
-                    width: "70%",
-                    justifyContent: "space-between",
-                    marginTop: "2rem"
-                }}
-            >
+            <div className={logoContainer}>
                 <ModalPopUp paymentImage={phonePeImage} button="PhonePe" url={phonePayImage} />
                 <ModalPopUp paymentImage={gPayImage} button="gpay" url={googlePayImage} />
             </div>
@@ -72,22 +67,27 @@ interface IPaymentInfoProps {
 }
 
 const PaymentInfo = ({ upiImage, upiContent, bank_account_details, phone_pe_image, gpayImage }: IPaymentInfoProps) => {
+    const isPhone = useMediaQuery("(max-width:767px)");
     return (
         <>
-            <Typography gutterBottom variant="h6" style={{ textAlign: "center", margin: "1rem 0 3rem" }}>
+            <Typography gutterBottom variant="h6" className={upiText}>
                 {upiContent[1].text}
             </Typography>
             <Grid container style={{ placeItems: "center" }}>
-                <QRCode imageURL={upiImage.url} alt={upiImage.alt} />
-                <Divider orientation="vertical" flexItem>
+                <Grid item xs>
+                    <QRCode imageURL={upiImage.url} alt={upiImage.alt} />
+                </Grid>
+                <Divider orientation={isPhone ? "horizontal" : "vertical"} flexItem className={mobileDivider}>
                     OR
                 </Divider>
-                <AccountDetails
-                    accountHeading={bank_account_details[0].text}
-                    accountDetails={bank_account_details.filter((el) => el.type === "list-item")}
-                    phonePeImage={phone_pe_image}
-                    gPayImage={gpayImage}
-                />
+                <Grid item xs>
+                    <AccountDetails
+                        accountHeading={bank_account_details[0].text}
+                        accountDetails={bank_account_details.filter((el) => el.type === "list-item")}
+                        phonePeImage={phone_pe_image}
+                        gPayImage={gpayImage}
+                    />
+                </Grid>
             </Grid>
         </>
     );

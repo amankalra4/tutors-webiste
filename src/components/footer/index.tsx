@@ -1,7 +1,17 @@
 import { Address, MobileNumber, EmailId } from "@modules/interface/cms-api-data";
 import Link from "next/link";
 import { LogoContainer } from "../logo";
-import { footerContainer, footer, addressDetail } from "./styles";
+import {
+    footerContainer,
+    addressDetail,
+    addressContainer,
+    dataContainer,
+    footerCenterContainer,
+    mobileContainer,
+    emailContainer,
+    quickLinksContainer,
+    commonLinks
+} from "./styles";
 
 interface IFooterProps {
     address: Address[];
@@ -14,43 +24,34 @@ const Footer = ({ address, email, mobileNumber }: IFooterProps) => {
     const emailText = email.find((el) => el.type === "list-item")?.text;
     return (
         <footer className={footerContainer}>
-            <div className={footer}>
-                <div style={{ marginBottom: "2rem" }}>
-                    <LogoContainer />
-                </div>
-
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <div>
-                        <p>
-                            <b>{address.find((el) => el.type === "paragraph")?.text}</b>
-                        </p>
+            <div className={footerCenterContainer}>
+                <LogoContainer />
+                <div className={dataContainer}>
+                    <div className={addressContainer}>
+                        <strong>{address.find((el) => el.type === "paragraph")?.text}</strong>
                         <p className={addressDetail}>{address.find((el) => el.type === "list-item")?.text}</p>
                     </div>
                     <div>
-                        <div>
-                            <p>
-                                <strong>{mobileNumber.find((el) => el.type === "paragraph")?.text}</strong>
-                            </p>
-                            <a href={`tel:${mobileNumberText}`} style={{ textDecoration: "none", color: "#323232" }}>
+                        <div className={mobileContainer}>
+                            <strong>{mobileNumber.find((el) => el.type === "paragraph")?.text}</strong>
+                            <a href={`tel:${mobileNumberText}`} className={commonLinks}>
                                 {mobileNumberText}
                             </a>
                         </div>
-                        <div>
-                            <p>
-                                <b>{email.find((el) => el.type === "paragraph")?.text}</b>
-                            </p>
-                            <a href={`mailto:${emailText}`} style={{ textDecoration: "none", color: "#323232" }}>
+                        <div className={emailContainer}>
+                            <b>{email.find((el) => el.type === "paragraph")?.text}</b>
+                            <a href={`mailto:${emailText}`} className={commonLinks}>
                                 {emailText}
                             </a>
                         </div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "30px", color: "black" }}>
+                    <div className={quickLinksContainer}>
                         <strong> Quick Links</strong>
                         <Link href="/about-us" passHref>
-                            <a style={{ textDecoration: "none", color: "black" }}>About Us</a>
+                            <a className={commonLinks}>About Us</a>
                         </Link>
                         <Link href="/pricing" passHref>
-                            <a style={{ textDecoration: "none", color: "black" }}>Pricing</a>
+                            <a className={commonLinks}>Pricing</a>
                         </Link>
                     </div>
                 </div>
