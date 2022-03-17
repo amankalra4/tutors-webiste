@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { HomePageImage, VisionText } from "@modules/interface/cms-api-data";
 import Typography from "@mui/material/Typography";
-import Image from "next/image";
-import { container, homePageImageClass, visionTextClass } from "./styles";
+import { container, homePageImageClass, visionTextClass, heading } from "./styles";
 
 interface ITopContainerProps {
     visionText: VisionText[];
@@ -13,7 +13,7 @@ const TopContainer = ({ visionText, homeImage }: ITopContainerProps) => {
     return (
         <div className={container}>
             <div className={visionTextClass}>
-                <Typography variant="h3" component="h1" gutterBottom>
+                <Typography variant="h3" component="h1" gutterBottom className={heading}>
                     Communicate.
                     <br />
                     Collaborate. Create.
@@ -31,14 +31,7 @@ const TopContainer = ({ visionText, homeImage }: ITopContainerProps) => {
                 ))}
             </div>
             <div className={homePageImageClass}>
-                <Image
-                    src={homeImage.url}
-                    quality={100}
-                    width={500}
-                    height={400}
-                    alt={homeImage.alt}
-                    className={homePageImageClass}
-                />
+                <img src={homeImage.url} width="100%" height="100%" alt={homeImage.alt} className={homePageImageClass} />
             </div>
         </div>
     );

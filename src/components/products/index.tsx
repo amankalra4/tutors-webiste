@@ -9,6 +9,7 @@ import { CollectiveData } from "@src/modules/interface/cms-api-data";
 import { cardContainer, container, individualCard } from "./styles";
 import SubHeading from "../subHeading";
 import useReactViewPort from "@modules/use-react-viewport";
+import { containerHeading } from "../seek-and-build/styles";
 
 const Products = ({ productsData }: { productsData: CollectiveData }) => {
     const {
@@ -36,7 +37,7 @@ const Products = ({ productsData }: { productsData: CollectiveData }) => {
     const { getStyles, viewPortRef } = useReactViewPort();
     return (
         <div className={container} ref={viewPortRef} style={{ ...getStyles() }}>
-            <div style={{ textAlign: "center", margin: "0 0 3rem 0" }}>
+            <div className={containerHeading}>
                 <SubHeading title="Products" />
             </div>
             <div className={cardContainer}>

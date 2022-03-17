@@ -23,13 +23,22 @@ export const RefContext = createContext<IArrayRef[]>([]);
 
 const circleImage = css`
     position: absolute;
-    top: -500px;
+    top: -560px;
     left: -250px;
     z-index: -1;
     transform: rotate(20deg);
     img {
         width: 48rem;
         transform: rotate(240deg);
+    }
+    @media (max-width: 767px) {
+        top: -120px;
+        left: 0;
+        transform: rotate(0);
+        img {
+            width: 60%;
+            transform: rotate(240deg);
+        }
     }
 `;
 

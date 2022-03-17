@@ -9,6 +9,10 @@ const cardContainer = css`
     gap: 20px;
     justify-content: space-around;
     margin-top: 2rem;
+    @media (max-width: 767px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 const individualCard = css`

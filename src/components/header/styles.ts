@@ -5,6 +5,9 @@ const headerContainer = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
 `;
 
 // const mobile = css`
