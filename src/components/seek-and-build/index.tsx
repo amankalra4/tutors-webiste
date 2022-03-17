@@ -1,16 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 import { CollectiveData, CommunicationList } from "@modules/interface/cms-api-data";
 import Typography from "@mui/material/Typography";
-import Image from "next/image";
+// import Image from "next/image";
 import SubHeading from "../subHeading";
-import { container, seekAndBuildImages } from "./styles";
+import { container, seekAndBuildImages, contentContainer, contentHeading, containerHeading } from "./styles";
 import useReactViewPort from "@src/modules/use-react-viewport";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SeekAndBuild = ({ seekAndBuildData }: { seekAndBuildData: CollectiveData }) => {
     const { communication_image, communication_list, digital_marketing_image, seo, seo_image, digital_marketing } =
         seekAndBuildData;
     return (
         <div className={container}>
-            <div style={{ textAlign: "center", margin: "0 0 3rem 0" }}>
+            <div className={containerHeading}>
                 <SubHeading title="Seek and Build" />
             </div>
             <AlternateComponent
@@ -48,6 +50,7 @@ interface IAlternateComponentProps {
 
 const AlternateComponent = ({ flexDirection, imageSrc, imageAltText, subHeading, displayData }: IAlternateComponentProps) => {
     const { getStyles, viewPortRef } = useReactViewPort();
+    const isPhone = useMediaQuery("(max-width:767px)");
     return (
         <div
             style={{
@@ -58,20 +61,20 @@ const AlternateComponent = ({ flexDirection, imageSrc, imageAltText, subHeading,
             }}
             ref={viewPortRef}
         >
-            <Image
-                className={seekAndBuildImages}
-                src={imageSrc}
-                quality={100}
-                width={400}
-                height={300}
-                loading="lazy"
-                alt={imageAltText}
-                layout="fixed"
-            />
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", maxWidth: "50%" }}>
-                <Typography variant="h4" component="div" gutterBottom>
+            <div className={contentContainer}>
+                {/* <div style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}> */}
+                <Typography variant="h5" component="div" gutterBottom className={contentHeading}>
                     {subHeading.flat(1)}
                 </Typography>
+                <img
+                    className={seekAndBuildImages}
+                    src={imageSrc}
+                    width={isPhone ? "100%" : "40%"}
+                    height={isPhone ? "100%" : "50%"}
+                    loading="lazy"
+                    alt={imageAltText}
+                />
+                {/* </div> */}
                 <Typography style={{ textAlign: "justify" }}>
                     {displayData.map((el) => (
                         <span key={el.text}>{el.text}</span>
