@@ -13,6 +13,7 @@ import { createContext, MutableRefObject, useRef } from "react";
 import { IRefName } from "@src/components/navbar/constants";
 import { css } from "@emotion/css";
 import useNavHandleClick from "@modules/use-handle-nav-click";
+import MetaData from "@components/meta-data";
 
 type IArrayRef = {
     refName: IRefName;
@@ -64,6 +65,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     return (
         <div>
+            <MetaData title="Learn with Elite" description="To make the education and digital literacy affordable and available to all the remote, developed and underdeveloped regions of India." />
             <div className={circleImage}>
                 <img src={apiData["sun-background"].url} alt={apiData["sun-background"].alt} />
             </div>

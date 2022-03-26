@@ -8,7 +8,7 @@ import { CardActionArea } from "@mui/material";
 import { CollectiveData } from "@src/modules/interface/cms-api-data";
 import { cardContainer, container, individualCard } from "./styles";
 import SubHeading from "../subHeading";
-import useReactViewPort from "@modules/use-react-viewport";
+// import useReactViewPort from "@modules/use-react-viewport";
 import { containerHeading } from "../seek-and-build/styles";
 
 const Products = ({ productsData }: { productsData: CollectiveData }) => {
@@ -34,9 +34,10 @@ const Products = ({ productsData }: { productsData: CollectiveData }) => {
             imageData: competitive_exams_image
         }
     ];
-    const { getStyles, viewPortRef } = useReactViewPort();
+    // const { getStyles, viewPortRef } = useReactViewPort();
     return (
-        <div className={container} ref={viewPortRef} style={{ ...getStyles() }}>
+        <div className={container}>
+            {/* <div className={container} ref={viewPortRef} style={{ ...getStyles() }}> */}
             <div className={containerHeading}>
                 <SubHeading title="Products" />
             </div>

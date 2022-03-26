@@ -1,11 +1,12 @@
+import { logo } from "@modules/constants";
 import Head from "next/head";
 
-interface IOgMetaData {
-    title?: string;
-    description?: string;
+interface MetaData {
+    title: string;
+    description: string;
 }
-/* Need to update this file */
-export default function OgMetaData(props: IOgMetaData) {
+
+export default function MetaData(props: MetaData) {
     const { title, description } = props;
     return (
         <Head>
@@ -21,8 +22,7 @@ export default function OgMetaData(props: IOgMetaData) {
                     <meta property="og:description" content={description} />
                 </>
             )}
-            {/* Change the image here according to the logo */}
-            {/* <meta property="og:image" content="/icons/zomato.png" /> */}
+            <meta property="og:image" content="/site-logo.jpg" />
         </Head>
     );
 }

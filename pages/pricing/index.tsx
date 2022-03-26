@@ -9,6 +9,7 @@ import Footer from "@components/footer";
 import React from "react";
 import PaymentInfo from "@components/payment-info";
 import PaymentContent from "@components/payment-content";
+import MetaData from "@components/meta-data";
 
 const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { footerData, getData } = props;
@@ -32,6 +33,7 @@ const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     return (
         <div>
+            <MetaData title="Pricing | Learn with Elite" description="Pay and get a chance to be a part of elite group" />
             <Header showWhite={false} currentPage={"/pricing"} handleClick={handleClick} />
             <PaymentInfo
                 upiImage={upi_image}
@@ -50,7 +52,6 @@ export async function getStaticProps() {
     try {
         const { data } = await axios.get<getReferenceIDInterface>(cmsBaseURL);
         const { data: cmsApiData } = await axios.get<CMSDataRootObject>(getCMSDataURL(data.refs[0].ref));
-        console.log("cmsApiData: ", cmsApiData);
         return {
             props: {
                 getData: cmsApiData.results.find((el) => el.slugs[0] === "payments")?.data,

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 // import Image from "next/image";
 import SubHeading from "../subHeading";
 import { container, seekAndBuildImages, contentContainer, contentHeading, containerHeading } from "./styles";
-import useReactViewPort from "@src/modules/use-react-viewport";
+// import useReactViewPort from "@src/modules/use-react-viewport";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SeekAndBuild = ({ seekAndBuildData }: { seekAndBuildData: CollectiveData }) => {
@@ -49,18 +49,25 @@ interface IAlternateComponentProps {
 }
 
 const AlternateComponent = ({ flexDirection, imageSrc, imageAltText, subHeading, displayData }: IAlternateComponentProps) => {
-    const { getStyles, viewPortRef } = useReactViewPort();
+    // const { getStyles, viewPortRef } = useReactViewPort();
     const isPhone = useMediaQuery("(max-width:767px)");
     return (
         <div
             style={{
                 display: "flex",
                 flexDirection,
-                gap: "40px",
-                ...getStyles()
+                gap: "40px"
             }}
-            ref={viewPortRef}
         >
+            {/* <div
+                style={{
+                    display: "flex",
+                    flexDirection,
+                    gap: "40px",
+                    ...getStyles()
+                }}
+                ref={viewPortRef}
+            > */}
             <div className={contentContainer}>
                 {/* <div style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}> */}
                 <Typography variant="h5" component="div" gutterBottom className={contentHeading}>

@@ -14,7 +14,7 @@ const homePageNavItems: INavItems[] = [
         route: null
     },
     {
-        name: "Product",
+        name: "Products",
         refName: "productsRef",
         route: null
     },

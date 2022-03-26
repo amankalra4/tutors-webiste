@@ -9,6 +9,7 @@ import OurValues from "@components/our-values-content";
 import OurTeamAndMission from "@components/our-team-and-mission";
 import useNavHandleClick from "@modules/use-handle-nav-click";
 import Footer from "@components/footer";
+import MetaData from "@components/meta-data";
 
 const AboutUs = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { footerData, getData } = props;
@@ -23,6 +24,7 @@ const AboutUs = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     return (
         <div>
+            <MetaData title="Learn more about us | Learn with Elite" description="Read more about Learn with Elite and what is our Mission & Values." />
             <AboutUsImage aboutUsImage={aboutUsImage} />
             <div style={{ position: "absolute", top: 0, width: "100%" }}>
                 <Header showWhite={false} currentPage={"/about-us"} handleClick={handleClick} />
