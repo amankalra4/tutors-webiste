@@ -1,3 +1,4 @@
+import { logo } from "@src/modules/constants";
 import Head from "next/head";
 
 interface MetaData {
@@ -13,7 +14,7 @@ export default function MetaData(props: MetaData) {
             <meta property="og:title" content={title} />
             <meta name="description" content={description} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content="/images/siteLogo.jpg" />
+            <meta property="og:image" content={logo} />
         </Head>
     );
 }
