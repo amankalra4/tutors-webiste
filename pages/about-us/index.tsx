@@ -23,7 +23,7 @@ const AboutUs = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { our_team, our_mission, creativity, inclusivity, positivity, "about-us-image": aboutUsImage } = getData;
 
     return (
-        <div>
+        <>
             <MetaData title="Learn more about us | Learn with Elite" description="Read more about Learn with Elite and what is our Mission & Values." />
             <AboutUsImage aboutUsImage={aboutUsImage} />
             <div style={{ position: "absolute", top: 0, width: "100%" }}>
@@ -36,7 +36,7 @@ const AboutUs = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 </div>
             </div>
             <Footer address={address} mobileNumber={mobile_number} email={email_id} />
-        </div>
+        </>
     );
 };
 

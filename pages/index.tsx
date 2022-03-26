@@ -64,7 +64,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     }
 
     return (
-        <div>
+        <>
             <MetaData title="Learn with Elite" description="To make the education and digital literacy affordable and available to all the remote, developed and underdeveloped regions of India." />
             <div className={circleImage}>
                 <img src={apiData["sun-background"].url} alt={apiData["sun-background"].alt} />
@@ -80,7 +80,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 </div>
                 <Footer address={apiData.address} mobileNumber={apiData.mobile_number} email={apiData.email_id} />
             </RefContext.Provider>
-        </div>
+        </>
     );
 };
 

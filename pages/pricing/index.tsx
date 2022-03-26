@@ -32,7 +32,7 @@ const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     } = getData;
 
     return (
-        <div>
+        <>
             <MetaData title="Pricing | Learn with Elite" description="Pay and get a chance to be a part of elite group" />
             <Header showWhite={false} currentPage={"/pricing"} handleClick={handleClick} />
             <PaymentInfo
@@ -44,7 +44,7 @@ const Pricing = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             />
             <PaymentContent collectiveData={[communication_pricing, march_exams_pricing, other_skills_pricing]} />
             <Footer address={address} mobileNumber={mobile_number} email={email_id} />
-        </div>
+        </>
     );
 };
 

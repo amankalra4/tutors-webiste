@@ -8,6 +8,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="icon" href="/images/siteLogo.jpg" />
         </Head>
         <body>
           <Main />
